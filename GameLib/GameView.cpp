@@ -213,5 +213,9 @@ void GameView::OnMouseDoubleClick(wxMouseEvent& event)
  */
 void GameView::OnLeftDown(wxMouseEvent &event)
 {
-	mGame.OnLeftDown(event.GetX(), event.GetY());
+	mGrabbedItem = mGame.HitTest(event.GetX(), event.GetY());
+    if (mGrabbedItem != nullptr)
+    {
+        mGrabbedItem->SingleClick(event.GetX(), event.GetY());
+    }
 }
