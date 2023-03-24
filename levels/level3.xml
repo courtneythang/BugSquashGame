@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<bug-squash level="Waves">
+  <program name="Final" x="300" y="500">
+
+    <bug type="null" x="-100" y="100" speed="95" start="0"/>
+
+    <bug type="garbage" x="1350" y="1300" speed="90" start="0"/>
+
+    <feature x="-100" y="-100" speed="90" start="0"/>
+
+    <bug type="null" x="650" y="1190" speed="115" start="20"/>
+    <bug type="null" x="1350" y="400" speed="120" start="20"/>
+
+    <bug type="redundancy" x="-100" y="600" speed="130" start="20"/>
+
+    <bug type="garbage" x="1200" y="-200" speed="140" start="20"/>
+    <bug type="garbage" x="750" y="1300" speed="130" start="20"/>
+
+    <feature x="-150" y="-900" speed="140" start="20"/>
+
+    <bug type="redundancy" x="1000" y="-250" speed="160" start="35"/>
+    <bug type="redundancy" x="900" y="1200" speed="170" start="35"/>
+
+    <bug type="null" x="-100" y="-150" speed="165" start="35"/>
+    <bug type="null" x="-100" y="-150" speed="150" start="35">
+      <double/>
+    </bug>
+
+    <bug type="garbage" x="-350" y="600" speed="145" start="35"/>
+
+    <feature x="1300" y="-200" speed="160" start="35"/>
+    <feature x="-300" y="-600" speed="165" start="35"/>
+
+    <bug type="garbage" x="400" y="1200" speed="200" start="35">
+      <code pass="int.*mFixed.*=.*[0-9]*.*;"><![CDATA[/**
+ * The game scoreboard/scoring area
+ */
+class ScoreBoard
+{
+private:
+    /// The current score
+    int mFixed;
+
+public:
+    void Draw(std::shared_ptr<wxGraphicsContext> graphics);
+};
+]]></code>
+
+    </bug>
+
+  </program>
+
+
+  <program name="Level" x="950" y="500">
+
+    <bug type="null" x="-100" y="100" speed="95" start="0"/>
+
+    <bug type="garbage" x="1350" y="1300" speed="75" start="0"/>
+
+    <feature x="-100" y="-100" speed="90" start="0"/>
+
+    <bug type="null" x="1450" y="350" speed="120" start="20"/>
+    <bug type="null" x="1350" y="500" speed="130" start="20"/>
+
+    <bug type="redundancy" x="1350" y="900" speed="140" start="20"/>
+
+    <bug type="garbage" x="1100" y="-200" speed="145" start="20"/>
+    <bug type="garbage" x="750" y="1300" speed="130" start="20"/>
+
+    <feature x="1150" y="-900" speed="140" start="20"/>
+
+    <bug type="redundancy" x="1300" y="-150" speed="150" start="35"/>
+    <bug type="redundancy" x="900" y="1200" speed="160" start="35"/>
+
+    <bug type="null" x="1250" y="-100" speed="145" start="35"/>
+    <bug type="null" x="1250" y="-100" speed="145" start="35">
+      <double/>
+    </bug>
+
+    <bug type="garbage" x="-250" y="900" speed="155" start="35"/>
+    <bug type="garbage" x="1350" y="700" speed="160" start="35"/>
+
+    <feature x="-15" y="-600" speed="165" start="35"/>
+    <feature x="1500" y="400" speed="145" start="35"/>
+
+    <bug type="null" x="-100" y="1100" speed="200" start="35">
+      <code pass="if.*\(.*mCode.*!=.*nullptr.*\).*\n.*{.*\n.*mCode->Clear\(\);.*\n.*"><![CDATA[
+    GetGame()->SetPause(false);
+
+    mCode->Clear();
+
+    return true;
+]]></code>
+
+    </bug>
+
+  </program>
+
+</bug-squash>
+
