@@ -56,6 +56,8 @@ private:
 
 	double mScaling = 0;
 
+	bool mSplat = false;
+
 protected:
 
 	/**
@@ -119,6 +121,10 @@ public:
 	std::string GetType() override {return "Bug";}
 
 	virtual void SetScale(double scale) { mScaling = scale;};
+
+	void SetSplat(bool splat) { splat = mSplat; }
+
+    bool GetSplat() { return mSplat; }
 };
 
 #endif //PROJECT1_GAMELIB_BUGCOLLECTION_H
