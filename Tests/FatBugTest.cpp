@@ -13,7 +13,7 @@
 TEST(FatBugTest, Construct){
 	Game game;
 
-	FatBug fatBug(&game);
+	FatBug fatBug(&game, (L"null"));
 }
 
 TEST(FatBugTest, HitTest) {
@@ -21,7 +21,7 @@ TEST(FatBugTest, HitTest) {
 	Game game;
 	game.Clear();
 
-	std::shared_ptr<Item> fatBug = std::make_shared<FatBug>(&game);
+	std::shared_ptr<Item> fatBug = std::make_shared<FatBug>(&game, (L"null"));
 	fatBug->SetLocation(100, 200);
 	game.Add(fatBug);
 
@@ -51,7 +51,7 @@ TEST(FatBugTest, DoubleClickTest1)
 	Game game;
 	game.Clear();
 
-	auto fatBug = std::make_shared<FatBug>(&game);
+	auto fatBug = std::make_shared<FatBug>(&game,(L"null"));
 
 	game.Add(fatBug);
 
