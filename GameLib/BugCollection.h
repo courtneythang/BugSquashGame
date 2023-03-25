@@ -125,6 +125,8 @@ public:
 	void SetSplat(bool splat) { splat = mSplat; }
 
     bool GetSplat() { return mSplat; }
+
+	std::shared_ptr<Laptop> GetLaptop() { return mLaptop; }
 };
 
 #endif //PROJECT1_GAMELIB_BUGCOLLECTION_H
