@@ -208,5 +208,20 @@ void RedundancyFly::MultiplyBug(wxMouseEvent &event)
 
 void RedundancyFly::SingleClick(int x, int y)
 {
-
+	if (mInitFly)
+	{
+		//tell game to multiply
+		mGame->RedundancyFlySplit(this);
+		SetDel(true);
+	}
+	else
+	{
+		SetDel(true);
+	}
 }
+
+void RedundancyFly::setInit(bool init)
+{
+	mInitFly = init;
+}
+
