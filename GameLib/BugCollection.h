@@ -111,6 +111,8 @@ public:
 
 	void SetLaptop(std::shared_ptr<Laptop> laptop);
 
+	std::shared_ptr<Laptop> GetLaptop() { return mLaptop; }
+
 //	double GetSpeeds() { return mSpeedX, mSpeedY; }
 
 	/// bug image, number of sprites, splat image
@@ -126,7 +128,7 @@ public:
 
     bool GetSplat() { return mSplat; }
 
-	std::shared_ptr<Laptop> GetLaptop() { return mLaptop; }
+
 };
 
 #endif //PROJECT1_GAMELIB_BUGCOLLECTION_H

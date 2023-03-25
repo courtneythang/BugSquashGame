@@ -101,53 +101,48 @@ void RedundancyFly::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 	{
 		mFlyTopBitmap = graphics->CreateBitmapFromImage(*mFlyTopImage);
 	}
+
 	int wid = mFlyBaseImage->GetWidth();
 	int hit = mFlyBaseImage->GetHeight();
-	graphics->DrawBitmap(mFlyBaseBitmap,
-						 int(GetX() - wid / 2),
-						 int(GetY() - hit / 2), wid, hit);
+
+//	graphics->DrawBitmap(mFlyBaseBitmap,
+//						 int(GetX() - wid / 2),
+//						 int(GetY() - hit / 2), wid, hit);
 
 	int widleft = mFlyLeftWingImage->GetWidth();
 	int hitleft = mFlyLeftWingImage->GetHeight();
-	graphics->DrawBitmap(mFlyLeftWingBitmap,
-						 int(GetX()- wid / 2),
-						 int(GetY() - WingSetY - hit / 2), widleft, hitleft);
-
-	graphics->DrawBitmap(mFlyLeftWingBitmap,
-						 int(GetX() - WingSetXOffset - wid / 2),
-						 int(GetY() - WingSetY - hit / 2), widleft, hitleft);
-
-	graphics->DrawBitmap(mFlyLeftWingBitmap,
-						 int(GetX() - (WingSetXOffset * 2) - wid / 2),
-						 int(GetY() - WingSetY - hit / 2), widleft, hitleft);
-
-	graphics->DrawBitmap(mFlyLeftWingBitmap,
-						 int(GetX() - (WingSetXOffset * 3) - wid / 2),
-						 int(GetY() - WingSetY - hit / 2), widleft, hitleft);
 
 	int widright = mFlyRightWingImage->GetWidth();
 	int hitright = mFlyLeftWingImage->GetHeight();
-	graphics->DrawBitmap(mFlyRightWingBitmap,
-						 int(GetX()- wid / 2),
-						 int(GetY() + WingSetY - hit / 2), widright, hitright);
 
-	graphics->DrawBitmap(mFlyRightWingBitmap,
-						 int(GetX() - WingSetXOffset - wid / 2),
-						 int(GetY() + WingSetY - hit / 2), widright, hitright);
+	int draw_amt = 0;
+	double angle = atan2(GetLaptop()->GetY() - GetY(), GetLaptop()->GetX() - GetX());
 
-	graphics->DrawBitmap(mFlyRightWingBitmap,
-						 int(GetX() - (WingSetXOffset * 2) - wid / 2),
-						 int(GetY() + WingSetY - hit / 2), widright, hitright);
+	while(draw_amt < NumberOfSetsOfWings)
+	{
 
-	graphics->DrawBitmap(mFlyRightWingBitmap,
-						 int(GetX() - (WingSetXOffset * 3) - wid / 2),
-						 int(GetY() + WingSetY - hit / 2), widright, hitright);
+		graphics->PushState();
+		graphics->Translate(GetX(), GetY());
+		graphics->Rotate(angle);
 
-	int widtop = mFlyTopImage->GetWidth();
-	int hittop = mFlyTopImage->GetHeight();
-	graphics->DrawBitmap(mFlyTopBitmap,
-						 int(GetX() - wid / 2),
-						 int(GetY() - hit / 2), widtop, hittop);
+		if (draw_amt == 0)
+		{
+			graphics->DrawBitmap(mFlyBaseBitmap, (-wid / 2), (-hit / 2), wid, hit);
+
+		}
+		
+		graphics->DrawBitmap(mFlyLeftWingBitmap, ((-WingSetXOffset * (draw_amt)) - wid / 2), -WingSetY - hit / 2, widleft, hitleft);
+		graphics->DrawBitmap(mFlyRightWingBitmap, ((-WingSetXOffset * (draw_amt)) - wid / 2), WingSetY - hit / 2, widright, hitright);
+
+		if (draw_amt == 3)
+		{
+			graphics->DrawBitmap(mFlyTopBitmap, (-wid / 2), (-hit / 2), wid, hit);
+
+		}
+
+		graphics->PopState();
+		draw_amt += 1;
+	}
 }
 
 wxXmlNode* RedundancyFly::XmlSave(wxXmlNode* node)
