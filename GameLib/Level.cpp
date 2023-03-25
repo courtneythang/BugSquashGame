@@ -57,6 +57,7 @@ void Level::Load(const wxString &filename, Game * game)
 		laptop->SetLocation(x,y);
 		mProgramName = laptopChild->GetAttribute(L"name");
 		laptop->SetName(mProgramName);
+		game->SetLaptop(laptop);
 		mLevelItems.push_back(laptop);
 
 		auto child = laptopChild->GetChildren();

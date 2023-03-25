@@ -20,6 +20,8 @@
 #include <random>
 #include <unordered_map>
 
+class RedundancyFly;
+
 class Item;
 
 class ScoreBoard;
@@ -100,6 +102,9 @@ private:
 	Leaderboard mLeaderboard;
 
 	std::wstring mState = L"Start";
+
+	std::shared_ptr<Laptop> mLaptop;
+
 public:
 
 	/**
@@ -152,6 +157,9 @@ public:
 
 	void SetState(wxString state) {mState = state;}
 
+	void RedundancyFlySplit(RedundancyFly* fly);
+
+	void SetLaptop(std::shared_ptr<Laptop> laptop);
 };
 
 #endif //PROJECT1_GAMELIB_GAME_H

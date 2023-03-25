@@ -13,7 +13,7 @@
 #include "Leaderboard.h"
 #include "wx/xml/xml.h"
 #include <wx/graphics.h>
-
+#include "RedundancyFly.h"
 
 using namespace std;
 
@@ -357,4 +357,34 @@ void Game::IncreaseOops(int add)
 	double oops = mScoreBoard.GetOops();
 	oops += add;
 	mScoreBoard.SetOops(oops);
+}
+
+void Game::RedundancyFlySplit(RedundancyFly* fly)
+{
+	// Amount of flies to appear after clicking bug
+	int flyMultiplier = rand() % 3 + 3;
+
+	double xPos = fly->GetX();
+	double yPos = fly->GetY();
+
+
+	for (int i = 0; i < flyMultiplier; i++)
+	{
+		// New fly positions that are +- 200 x/y location from originally clicked bug
+		int flyLocationX = xPos + (rand() % 200);
+		int flyLocationY = yPos + (rand() % 200);
+
+		auto item = make_shared<RedundancyFly>(this);
+		item->SetLocation(flyLocationX,flyLocationY);
+		item->SetSpeed(120);
+		item->SetStartTime(1);
+		item->setInit(false);
+		item->SetLaptop(mLaptop);
+		Add(item);
+	}
+}
+
+void Game::SetLaptop(std::shared_ptr<Laptop> laptop)
+{
+	mLaptop = laptop;
 }
